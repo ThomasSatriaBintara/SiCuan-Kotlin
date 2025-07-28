@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="blue_primary">#3F5AA6</color>
+    <color name="blue_light">#4FC3F7</color>
+    <color name="blue_dark">#29B6F6</color>
+
+    <!-- Background Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_input">#E8E8E8</color>
+
+    <!-- Text Colors -->
+    <color name="black">#000000</color>
+    <color name="gray_text">#666666</color>
+    <color name="gray_hint">#AAAAAA</color>
+
+    <!-- Button Colors -->
+    <color name="teal_primary">#26A69A</color>
+    <color name="teal_dark">#00897B</color>
+    <color name="teal_light">#4DB6AC</color>
+
+    <!-- Status Bar -->
+    <color name="status_bar_color">#1976D2</color>
+
+    <!-- Tambahan warna -->
+    <color name="purple">#9C27B0</color>
+    <color name="gray">#B0B0B0</color>
+
+    <color name="bar">#388699</color>
+
+
+</resources>

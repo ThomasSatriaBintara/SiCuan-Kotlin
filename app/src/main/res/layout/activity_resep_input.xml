@@ -1,0 +1,215 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E0FFFF"
+    tools:context=".dashboard.hpp.TambahResepActivity">
+
+    <!-- Wave Header -->
+    <ImageView
+        android:id="@+id/waveBackground"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_wave"
+        android:scaleType="fitXY" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Judul -->
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Tambah Resep"
+        android:textSize="20sp"
+        android:textColor="#3E4A89"
+        android:textStyle="bold" />
+
+    <!-- Card Form -->
+    <LinearLayout
+        android:id="@+id/formCard"
+        android:layout_below="@id/pageTitle"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card"
+        android:padding="16dp">
+
+        <!-- Nama Bahan -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Bahan"
+            android:textColor="#000"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"/>
+
+        <EditText
+            android:id="@+id/editNamaBahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:background="@android:color/transparent"
+            android:paddingVertical="8dp"/>
+
+        <!-- Harga Beli -->
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Harga Beli"
+            android:textColor="#000"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"/>
+
+        <EditText
+            android:id="@+id/editHargaBeli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rp."
+            android:inputType="number"
+            android:background="@android:color/transparent"
+            android:paddingVertical="8dp"/>
+
+        <!-- Jumlah dan Satuan -->
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jumlah"
+                    android:textColor="#000"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999"/>
+
+                <EditText
+                    android:id="@+id/editJumlah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:inputType="numberDecimal"
+                    android:background="@android:color/transparent"
+                    android:paddingVertical="8dp"/>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Satuan"
+                    android:textColor="#000"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999"/>
+
+                <Spinner
+                    android:id="@+id/spinnerSatuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Jumlah Digunakan -->
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jumlah Digunakan"
+            android:textColor="#000"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"/>
+
+        <EditText
+            android:id="@+id/editJumlahDigunakan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:inputType="numberDecimal"
+            android:background="@android:color/transparent"
+            android:paddingVertical="8dp"/>
+
+        <!-- Tombol Batal dan Tambah -->
+        <LinearLayout
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnBatal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#6A6A6A"
+                android:text="BATAL"
+                android:textColor="#FFFFFF"/>
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btnTambah"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#1CA58E"
+                android:text="TAMBAH"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <include
+        android:id="@+id/bottom_navigation"
+        layout="@layout/bottom_navigation"/>
+
+</RelativeLayout>

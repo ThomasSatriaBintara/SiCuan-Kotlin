@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card_jual"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvNamaMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Es Teh"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/tvKeuntungan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keuntungan: 50%" />
+
+    <TextView
+        android:id="@+id/tvHargaJual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harga Jual: Rp 3000" />
+</LinearLayout>

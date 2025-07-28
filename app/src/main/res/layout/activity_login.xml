@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_gradient"
+    tools:context=".logreg.LoginActivity">
+
+    <!-- Card Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card"
+        android:padding="24dp"
+        android:elevation="6dp"
+        android:layout_margin="24dp"
+        android:layout_gravity="center">
+
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/ic_store"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="Logo" />
+
+        <!-- Log In Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masuk"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#3161A3"
+            android:layout_marginTop="1dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Masukkan email anda"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:text="Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Masukkan password anda"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvLupaPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lupa Password?"
+                android:textSize="14sp"
+                android:textColor="#0066FF"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masuk"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#00BCD4"
+            android:elevation="4dp"
+            android:layout_marginTop="16dp" />
+
+        <!-- Sign Up Text -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum Punya Akun?"
+                android:textSize="14sp"
+                android:textColor="#333" />
+
+            <TextView
+                android:id="@+id/tvDaftar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Daftar"
+                android:textSize="14sp"
+                android:textColor="#0066FF"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

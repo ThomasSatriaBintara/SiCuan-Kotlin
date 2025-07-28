@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SiCuan"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".splash.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".logreg.LoginActivity" />
+        <activity android:name=".logreg.RegisterActivity" />
+
+        <activity android:name=".logreg.LupaActivity" />
+        <activity android:name=".logreg.OTPActivity" />
+        <activity android:name=".logreg.ResetActivity" />
+
+        <activity android:name=".dashboard.home.MainActivity" />
+
+        <activity android:name=".dashboard.setting.SettingActivity" />
+        <activity android:name=".dashboard.setting.SetProfileActivity" />
+        <activity android:name=".dashboard.setting.SetPasswordActivity" />
+        <activity android:name=".dashboard.setting.SetTentangActivity" />
+
+        <activity android:name=".dashboard.hpp.HPPActivity" />
+        <activity android:name=".dashboard.hpp.ResepActivity" />
+        <activity android:name=".dashboard.hpp.TambahResepActivity" />
+
+        <activity android:name=".dashboard.jual.JualActivity" />
+
+        <activity android:name=".dashboard.penjualan.PenjualanActivity" />
+        <activity android:name=".dashboard.penjualan.TambahPenjualanActivity" />
+
+        <activity android:name=".dashboard.stok.StokActivity" />
+
+    </application>
+
+</manifest>

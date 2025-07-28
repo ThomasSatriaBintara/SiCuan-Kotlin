@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Tanggal Transaksi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etTanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pilih tanggal"
+            android:focusable="false"
+            android:background="@drawable/bg_edittext"/>
+
+        <TextView
+            android:text="Nama Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvHpp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HPP: -"
+            android:layout_marginTop="12dp"
+            android:enabled="false"
+            android:background="@drawable/bg_input_disabled"/>
+
+        <TextView
+            android:id="@+id/tvHargaJual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Harga Jual: -"
+            android:layout_marginTop="4dp"
+            android:enabled="false"
+            android:background="@drawable/bg_input_disabled"/>
+
+        <EditText
+            android:id="@+id/etJumlahLaku"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jumlah Laku"
+            android:inputType="number"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etKeterangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Keterangan (opsional)"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Si Cuan</string>
+
+    <string name="halo_sicuan">Halo, %1$s!</string>
+
+    <string name="greeting_with_username">Halo, %1$s!</string>
+    <string name="default_usaha_name">EsTehTik</string>
+
+    <string-array name="tambah_resep_spinner">
+        <item>gram (g)</item>
+        <item>mililiter (ml)</item>
+        <item>pieces (pcs)</item>
+    </string-array>
+
+    <string-array name="stok_spinner">
+        <item>PEMBELIAN</item>
+        <item>PENYESUAIAN</item>
+        <item>PENJUALAN</item>
+    </string-array>
+
+</resources>

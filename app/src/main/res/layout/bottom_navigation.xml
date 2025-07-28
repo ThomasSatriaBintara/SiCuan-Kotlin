@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomNav"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_alignParentBottom="true"
+    android:background="#2A8C94"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <!-- 1. Jual -->
+    <LinearLayout
+        android:id="@+id/nav_jual"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_jual" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jual"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 2. HPP -->
+    <LinearLayout
+        android:id="@+id/nav_hpp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_hpp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HPP"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 3. Home -->
+    <LinearLayout
+        android:id="@+id/nav_home"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_home" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 4. Stok -->
+    <LinearLayout
+        android:id="@+id/nav_stok"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_stok" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stock"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 5. Penjualan -->
+    <LinearLayout
+        android:id="@+id/nav_penjualan"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_penjualan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penjualan"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

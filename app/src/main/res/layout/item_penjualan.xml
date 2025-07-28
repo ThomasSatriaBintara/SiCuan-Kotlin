@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="6dp"
+    android:padding="12dp"
+    android:backgroundTint="#FFFFFF"
+    android:foreground="?attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvNamaMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Es Teh"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#333333" />
+
+        <ImageView
+            android:id="@+id/btnHapus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_camera"
+            android:layout_alignParentEnd="true" />
+            <!-- android:tint="#FF4444" /> -->
+
+        <TextView
+            android:id="@+id/tvDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laku : 40\nUang Masuk : Rp. 120000\nLaba : Rp. 60000"
+            android:layout_below="@id/tvNamaMenu"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            android:layout_marginTop="8dp"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
