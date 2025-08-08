@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.sicuan.R
 import com.example.sicuan.api.ApiClient
+import com.example.sicuan.dashboard.home.MainActivity
+import com.example.sicuan.dashboard.hpp.HPPActivity
+import com.example.sicuan.dashboard.jual.JualActivity
+import com.example.sicuan.dashboard.stok.StokActivity
 import com.example.sicuan.model.request.PenjualanRequest
 import com.example.sicuan.model.response.Menu
 import kotlinx.coroutines.launch
@@ -46,6 +51,27 @@ class TambahPenjualanActivity : AppCompatActivity() {
 
         tvTanggal.setOnClickListener {
             showDatePicker()
+        }
+
+        findViewById<LinearLayout>(R.id.nav_home).setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java)); finish()
+        }
+        findViewById<LinearLayout>(R.id.nav_hpp).setOnClickListener {
+            startActivity(Intent(this, HPPActivity::class.java)); finish()
+        }
+        findViewById<LinearLayout>(R.id.nav_stok).setOnClickListener {
+            startActivity(Intent(this, StokActivity::class.java)); finish()
+        }
+        findViewById<LinearLayout>(R.id.nav_jual).setOnClickListener {
+            startActivity(Intent(this, JualActivity::class.java)); finish()
+        }
+
+        findViewById<Toolbar>(R.id.toolbar).apply {
+            setSupportActionBar(this)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+            setNavigationOnClickListener {
+                startActivity(Intent(this@TambahPenjualanActivity, PenjualanActivity::class.java))
+            }
         }
 
         // Get daftar menu dari backend
@@ -126,14 +152,15 @@ class TambahPenjualanActivity : AppCompatActivity() {
             val pickedCalendar = Calendar.getInstance()
             pickedCalendar.set(year, month, dayOfMonth)
 
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val formattedDate = sdf.format(pickedCalendar.time)
+            val sdfBackend = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // hanya tanggal
+            val sdfDisplay = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID"))
 
-            selectedTanggal = formattedDate + "T12:00:00Z" // format ISO 8601
-            tvTanggal.text = formattedDate
+            selectedTanggal = sdfBackend.format(pickedCalendar.time) // ⬅️ hasil: 2025-08-06
+            tvTanggal.text = sdfDisplay.format(pickedCalendar.time)
 
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
 
         datePicker.show()
     }
+
 }

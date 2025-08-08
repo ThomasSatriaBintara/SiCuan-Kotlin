@@ -20,7 +20,7 @@
         android:id="@+id/editMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nama Menu"
+        android:hint="Masukkan Nama Menu"
         android:background="@drawable/bg_edittext"
         android:padding="10dp"
         android:inputType="text" />
@@ -29,7 +29,9 @@
         android:id="@+id/btnTambah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tambah"
+        android:text="Simpan"
         android:layout_gravity="end"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:textColor="#000000"
+        android:backgroundTint="#68DBCC" />
 </LinearLayout>

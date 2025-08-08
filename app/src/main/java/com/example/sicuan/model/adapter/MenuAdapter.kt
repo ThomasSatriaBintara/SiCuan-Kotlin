@@ -4,25 +4,28 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sicuan.R
 import com.example.sicuan.dashboard.hpp.ResepActivity
 import com.example.sicuan.model.response.Menu
 
 class MenuAdapter(
-    private var menuList: List<Menu>
+    private var menuList: List<Menu>,
+    private val onDeleteClick: (String) -> Unit,
+    private val onEditClick: (Menu) -> Unit
 ) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     inner class MenuViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNamaMenu: TextView = view.findViewById(R.id.tvNamaMenu)
         val tvHpp: TextView = view.findViewById(R.id.tvHpp)
+        val btnDelete: ImageButton = view.findViewById(R.id.btnDelete)
+        val btnEdit: ImageButton = view.findViewById(R.id.btnEdit) // Tambahkan ID ini di XML item_menu
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_menu, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)
         return MenuViewHolder(view)
     }
 
@@ -31,14 +34,14 @@ class MenuAdapter(
         holder.tvNamaMenu.text = menu.nama_menu
         holder.tvHpp.text = "HPP : ${menu.hpp}"
 
-        // ✅ Tambahkan klik listener di sini
+        holder.btnDelete.setOnClickListener { onDeleteClick(menu.id) }
+        holder.btnEdit.setOnClickListener { onEditClick(menu) }
+
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            Toast.makeText(context, "Klik menu ID: ${menu.id}", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(context, ResepActivity::class.java)
-            intent.putExtra("nama_menu", menu.nama_menu) // jika ingin kirim data nama menu
-            intent.putExtra("id_menu", menu.id) // id dikirim sebagai String
+            intent.putExtra("nama_menu", menu.nama_menu)
+            intent.putExtra("id_menu", menu.id)
             context.startActivity(intent)
         }
     }

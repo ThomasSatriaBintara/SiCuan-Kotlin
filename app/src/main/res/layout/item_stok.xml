@@ -79,7 +79,7 @@
                 android:id="@+id/btnDelete"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_total_bahan"
+                android:src="@drawable/ic_delete"
                 android:contentDescription="Delete"
                 android:layout_marginEnd="4dp" />
 

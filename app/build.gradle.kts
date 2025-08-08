@@ -65,8 +65,5 @@ android {
         implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
         implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
-// ViewBinding sudah kamu aktifkan tadi: ✅
-
-
     }
 }

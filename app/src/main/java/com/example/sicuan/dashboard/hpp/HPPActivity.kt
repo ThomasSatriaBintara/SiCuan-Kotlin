@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -22,6 +23,7 @@ import com.example.sicuan.dashboard.stok.StokActivity
 import com.example.sicuan.logreg.LoginActivity
 import com.example.sicuan.model.adapter.MenuAdapter
 import com.example.sicuan.model.request.MenuRequest
+import com.example.sicuan.model.response.Menu
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,7 +42,13 @@ class HPPActivity : AppCompatActivity() {
 
         recyclerMenu = findViewById(R.id.recyclerMenu)
         recyclerMenu.layoutManager = LinearLayoutManager(this)
-        menuAdapter = MenuAdapter(listOf())
+
+        menuAdapter = MenuAdapter(
+            listOf(),
+            onDeleteClick = { menuId -> showDeleteDialog(menuId) },
+            onEditClick = { menu -> showEditMenuDialog(menu) }
+        )
+
         recyclerMenu.adapter = menuAdapter
 
         fetchMenus()
@@ -85,12 +93,22 @@ class HPPActivity : AppCompatActivity() {
     }
 
     private fun fetchMenus() {
+        val recyclerMenu = findViewById<RecyclerView>(R.id.recyclerMenu)
+        val emptyStateLayout = findViewById<LinearLayout>(R.id.emptyStateLayout)
+
         lifecycleScope.launch {
             try {
                 val response = withContext(Dispatchers.IO) { apiService.getMenus() }
                 if (response.isSuccessful && response.body()?.success == true) {
                     val menuList = response.body()!!.data.menus
-                    menuAdapter.updateData(menuList)
+                    if (menuList.isEmpty()) {
+                        recyclerMenu.visibility = View.GONE
+                        emptyStateLayout.visibility = View.VISIBLE
+                    } else {
+                        recyclerMenu.visibility = View.VISIBLE
+                        emptyStateLayout.visibility = View.GONE
+                        menuAdapter.updateData(menuList)
+                    }
                 } else {
                     Toast.makeText(this@HPPActivity, "Gagal menampilkan menu", Toast.LENGTH_SHORT).show()
                 }
@@ -157,4 +175,88 @@ class HPPActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun showDeleteDialog(menuId: String) {
+        val dialog = AlertDialog.Builder(this).create()
+        val view = layoutInflater.inflate(R.layout.dialog_delete_menu, null) // Pastikan nama XML benar!
+
+        val btnCancel = view.findViewById<Button>(R.id.btnCancel)
+        val btnDelete = view.findViewById<Button>(R.id.btnDelete)
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnDelete.setOnClickListener {
+            deleteMenu(menuId)
+            dialog.dismiss()
+        }
+
+        dialog.setView(view)
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun deleteMenu(menuId: String) {
+        lifecycleScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.deleteMenu(menuId)
+                }
+
+                if (response.isSuccessful && response.body()?.success == true) {
+                    Toast.makeText(this@HPPActivity, "Menu berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    fetchMenus() // refresh list menu
+                } else {
+                    Toast.makeText(this@HPPActivity, "Gagal menghapus menu", Toast.LENGTH_SHORT).show()
+                }
+
+            } catch (e: Exception) {
+                Toast.makeText(this@HPPActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun showEditMenuDialog(menu: Menu) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_menu, null)
+        val editMenu = dialogView.findViewById<EditText>(R.id.editMenu)
+        val btnTambah = dialogView.findViewById<Button>(R.id.btnTambah)
+
+        editMenu.setText(menu.nama_menu)
+        btnTambah.text = "Simpan"
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.show()
+
+        btnTambah.setOnClickListener {
+            val updatedName = editMenu.text.toString().trim()
+            if (updatedName.isEmpty()) {
+                editMenu.error = "Nama menu tidak boleh kosong"
+                return@setOnClickListener
+            }
+
+            val request = MenuRequest(nama_menu = updatedName)
+
+            lifecycleScope.launch {
+                try {
+                    val response = withContext(Dispatchers.IO) {
+                        apiService.updateMenu(menu.id, request)
+                    }
+
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        Toast.makeText(this@HPPActivity, "Menu berhasil diupdate", Toast.LENGTH_SHORT).show()
+                        fetchMenus()
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(this@HPPActivity, "Gagal update: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this@HPPActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 }

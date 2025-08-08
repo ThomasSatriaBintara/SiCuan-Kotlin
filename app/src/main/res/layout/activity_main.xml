@@ -112,7 +112,7 @@
                 android:background="#F1FFFF">
 
                 <TextView
-                    android:id="@+id/penjualanLabel"
+                    android:id="@+id/totalPenjualan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rp. 0"
@@ -147,7 +147,7 @@
                 android:background="#F1FFFF">
 
                 <TextView
-                    android:id="@+id/keuntunganLabel"
+                    android:id="@+id/totalKeuntungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rp. 0"
@@ -196,7 +196,7 @@
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChart"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="300dp"
                 android:layout_weight="1"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="4dp"

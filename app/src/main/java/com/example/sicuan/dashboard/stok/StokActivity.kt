@@ -67,9 +67,11 @@ class StokActivity : AppCompatActivity() {
         tvTotal = findViewById(R.id.tvTotalBahan)
         tvHampirHabis = findViewById(R.id.tvHampirHabis)
 
-        adapter = StokAdapter(emptyList()) { stock ->
-            showEditStokDialog(stock)
-        }
+        adapter = StokAdapter(
+            emptyList(),
+            onEditClicked = { stock -> showEditStokDialog(stock) },
+            onDeleteClicked = { stock -> showDeleteDialog(stock) }
+        )
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -162,4 +164,40 @@ class StokActivity : AppCompatActivity() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
     }
+
+    private fun showDeleteDialog(stock: Stock) {
+        val dialog = android.app.AlertDialog.Builder(this).create()
+        val view = layoutInflater.inflate(R.layout.dialog_delete_menu, null) // gunakan layout yang sama
+
+        val btnCancel = view.findViewById<Button>(R.id.btnCancel)
+        val btnDelete = view.findViewById<Button>(R.id.btnDelete)
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnDelete.setOnClickListener {
+            deleteStock(stock.id)
+            dialog.dismiss()
+        }
+
+        dialog.setView(view)
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun deleteStock(stockId: String) {
+        lifecycleScope.launch {
+            try {
+                val response = ApiClient.instance.deleteStock(stockId)
+                if (response.isSuccessful && response.body()?.success == true) {
+                    Toast.makeText(this@StokActivity, "Stok berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    fetchStok()
+                } else {
+                    Toast.makeText(this@StokActivity, "Gagal menghapus stok", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@StokActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }

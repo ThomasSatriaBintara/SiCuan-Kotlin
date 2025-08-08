@@ -39,14 +39,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
+    <!-- Label Tanggal Transaksi -->
+    <TextView
+        android:id="@+id/tvTanggalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Transaksi"
+        android:textSize="16sp"
+        android:textColor="#1D3557"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp" />
+
     <!-- Tanggal transaksi -->
     <LinearLayout
         android:id="@+id/layoutTanggal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTanggalLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -54,9 +67,9 @@
             android:id="@+id/etTanggalAwal"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:hint="Dari"
-            android:background="@drawable/bg_edittext"
-            android:drawableStart="@drawable/ic_camera"
+            android:text="17 Juni 2025"
+            android:background="@drawable/bg_calendar"
+            android:drawableStart="@drawable/ic_calendar"
             android:focusable="false"
             android:padding="10dp"/>
 
@@ -72,9 +85,9 @@
             android:id="@+id/etTanggalAkhir"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:hint="Sampai"
-            android:background="@drawable/bg_edittext"
-            android:drawableStart="@drawable/ic_camera"
+            android:text="17 Juni 2025"
+            android:background="@drawable/bg_calendar"
+            android:drawableStart="@drawable/ic_calendar"
             android:focusable="false"
             android:padding="10dp"/>
     </LinearLayout>
@@ -90,7 +103,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp"/>
 
-    <!-- Tombol tambah -->
+    <!-- Placeholder untuk saat belum ada data -->
+    <LinearLayout
+        android:id="@+id/llNoData"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/layoutTanggal"
+        app:layout_constraintBottom_toTopOf="@id/btnTambah"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty_penjualan"
+            android:contentDescription="No data graph" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum ada data penjualan hari ini"
+            android:textColor="#1D3557"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yuk, mulai catat penjualan pertamamu!"
+            android:textColor="#1D3557"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnTambah"
         android:layout_width="wrap_content"
@@ -104,7 +152,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="12dp"/>
 
-    <!-- Bottom Navigation -->
     <include
         android:id="@+id/bottom_navigation"
         layout="@layout/bottom_navigation"
@@ -113,5 +160,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

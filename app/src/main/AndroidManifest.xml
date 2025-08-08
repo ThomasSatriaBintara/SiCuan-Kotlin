@@ -44,6 +44,7 @@
         <activity android:name=".dashboard.hpp.HPPActivity" />
         <activity android:name=".dashboard.hpp.ResepActivity" />
         <activity android:name=".dashboard.hpp.TambahResepActivity" />
+        <activity android:name=".dashboard.hpp.EditResepActivity" />
 
         <activity android:name=".dashboard.jual.JualActivity" />
 

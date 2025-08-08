@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="170dp"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:elevation="6dp"
-    android:padding="12dp"
-    android:backgroundTint="#FFFFFF"
-    android:foreground="?attr/selectableItemBackground">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="#FFFFFF">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/tvNamaMenu"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNamaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Es Teh"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvJumlahLaku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Laku: 40"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvIncome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Uang Masuk: Rp. 120000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvProfit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Laba: Rp. 60000"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Es Teh"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#333333" />
-
-        <ImageView
-            android:id="@+id/btnHapus"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_camera"
-            android:layout_alignParentEnd="true" />
-            <!-- android:tint="#FF4444" /> -->
-
-        <TextView
-            android:id="@+id/tvDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Laku : 40\nUang Masuk : Rp. 120000\nLaba : Rp. 60000"
-            android:layout_below="@id/tvNamaMenu"
-            android:textSize="14sp"
-            android:textColor="#555555"
-            android:layout_marginTop="8dp"/>
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Delete" />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>
