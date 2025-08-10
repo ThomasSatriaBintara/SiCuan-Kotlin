@@ -2,14 +2,16 @@ package com.example.sicuan.dashboard.stok
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sicuan.api.ApiClient
 import com.example.sicuan.R
+import com.example.sicuan.api.ApiClient
 import com.example.sicuan.dashboard.hpp.HPPActivity
 import com.example.sicuan.dashboard.home.MainActivity
 import com.example.sicuan.dashboard.jual.JualActivity
@@ -17,6 +19,7 @@ import com.example.sicuan.dashboard.penjualan.PenjualanActivity
 import com.example.sicuan.model.adapter.StokAdapter
 import com.example.sicuan.model.request.StokRequest
 import com.example.sicuan.model.response.Stock
+import com.example.sicuan.model.response.StockTransaction
 import kotlinx.coroutines.launch
 
 class StokActivity : AppCompatActivity() {
@@ -47,17 +50,14 @@ class StokActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-
         navHpp.setOnClickListener {
             startActivity(Intent(this, HPPActivity::class.java))
             finish()
         }
-
         navPenjualan.setOnClickListener {
             startActivity(Intent(this, PenjualanActivity::class.java))
             finish()
         }
-
         navJual.setOnClickListener {
             startActivity(Intent(this, JualActivity::class.java))
             finish()
@@ -70,7 +70,8 @@ class StokActivity : AppCompatActivity() {
         adapter = StokAdapter(
             emptyList(),
             onEditClicked = { stock -> showEditStokDialog(stock) },
-            onDeleteClicked = { stock -> showDeleteDialog(stock) }
+            onDeleteClicked = { stock -> showDeleteDialog(stock) },
+            onDetailClicked = { stock -> showDetailStokDialog(stock.id) }
         )
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -122,7 +123,7 @@ class StokActivity : AppCompatActivity() {
             spinnerTransaksi.adapter = adapterSpinner
         }
 
-        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(false)
             .create()
@@ -157,23 +158,20 @@ class StokActivity : AppCompatActivity() {
             }
         }
 
-        btnBatal.setOnClickListener {
-            dialog.dismiss()
-        }
+        btnBatal.setOnClickListener { dialog.dismiss() }
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
     }
 
     private fun showDeleteDialog(stock: Stock) {
-        val dialog = android.app.AlertDialog.Builder(this).create()
-        val view = layoutInflater.inflate(R.layout.dialog_delete_menu, null) // gunakan layout yang sama
+        val dialog = AlertDialog.Builder(this).create()
+        val view = layoutInflater.inflate(R.layout.dialog_delete_menu, null)
 
         val btnCancel = view.findViewById<Button>(R.id.btnCancel)
         val btnDelete = view.findViewById<Button>(R.id.btnDelete)
 
         btnCancel.setOnClickListener { dialog.dismiss() }
-
         btnDelete.setOnClickListener {
             deleteStock(stock.id)
             dialog.dismiss()
@@ -193,6 +191,60 @@ class StokActivity : AppCompatActivity() {
                     fetchStok()
                 } else {
                     Toast.makeText(this@StokActivity, "Gagal menghapus stok", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@StokActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun showDetailStokDialog(stockId: String) {
+        lifecycleScope.launch {
+            try {
+                val response = ApiClient.instance.getStockDetail(stockId)
+                if (response.isSuccessful && response.body()?.success == true) {
+                    val stockDetail = response.body()?.data?.stock ?: return@launch
+
+                    val dialogView = layoutInflater.inflate(R.layout.dialog_detail_stok, null)
+
+                    // Set data detail bahan
+                    dialogView.findViewById<TextView>(R.id.tvNamaBahan).text = stockDetail.nama_bahan
+                    dialogView.findViewById<TextView>(R.id.tvJumlahBahan).text = "${stockDetail.jumlah}${stockDetail.satuan}"
+                    dialogView.findViewById<TextView>(R.id.tvMinStok).text = "${stockDetail.minimum_stock}${stockDetail.satuan}"
+                    dialogView.findViewById<TextView>(R.id.tvTanggalDitambahkan).text = stockDetail.createdAt
+                    dialogView.findViewById<TextView>(R.id.tvTanggalUpdate).text = stockDetail.updatedAt
+
+                    // Container untuk transaksi
+                    val containerTransaksi = dialogView.findViewById<LinearLayout>(R.id.containerTransaksi)
+                    containerTransaksi.removeAllViews()
+
+                    val inflater = LayoutInflater.from(this@StokActivity)
+
+                    stockDetail.transactions.forEach { trx: StockTransaction ->
+                        val itemView = inflater.inflate(R.layout.item_transaksi, containerTransaksi, false)
+
+                        itemView.findViewById<TextView>(R.id.tvJenisTransaksi).text = trx.jenis_transaksi
+                        itemView.findViewById<TextView>(R.id.tvJumlahTransaksi).text = "${trx.jumlah}"
+                        itemView.findViewById<TextView>(R.id.tvKeteranganTransaksi).text = trx.keterangan
+                        itemView.findViewById<TextView>(R.id.tvTanggalTransaksi).text = trx.createdAt
+
+                        containerTransaksi.addView(itemView)
+                    }
+
+                    // Buat dan tampilkan dialog dengan properti dismissible
+                    val dialog = AlertDialog.Builder(this@StokActivity)
+                        .setView(dialogView)
+                        .setCancelable(true) // Bisa di-cancel dengan tombol back
+                        .create()
+
+                    // Set agar dialog bisa di-dismiss ketika diklik di luar area dialog
+                    dialog.setCanceledOnTouchOutside(true)
+
+                    // Tampilkan dialog
+                    dialog.show()
+
+                } else {
+                    Toast.makeText(this@StokActivity, "Gagal memuat detail stok", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@StokActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()

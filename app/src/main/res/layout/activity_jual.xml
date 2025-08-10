@@ -19,13 +19,15 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         app:navigationIcon="@drawable/ic_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp" />
 
     <!-- Judul -->
     <TextView
@@ -33,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jual"
-        android:textSize="22sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#1D3557"
         app:layout_constraintTop_toBottomOf="@id/imgWave"
@@ -134,13 +136,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card_jual"
+                android:drawableEnd="@drawable/ic_dropdown"
                 android:padding="8dp" />
 
             <!-- Input HPP -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HPP (Rp)"
+                android:text="HPP"
                 android:textColor="#000000"
                 android:textSize="14sp"
                 android:layout_marginTop="16dp"
@@ -195,7 +198,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Harga Jual (Rp)"
+                android:text="Harga Jual"
                 android:textColor="#000000"
                 android:textSize="14sp"
                 android:layout_marginTop="16dp"

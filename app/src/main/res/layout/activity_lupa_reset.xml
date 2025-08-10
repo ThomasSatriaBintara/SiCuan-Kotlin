@@ -7,13 +7,25 @@
     android:background="@drawable/bg_gradient"
     tools:context=".logreg.ResetActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp" />
+
     <!-- Main Card Container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="200dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="12dp"
         app:cardBackgroundColor="@color/white"
@@ -45,10 +57,9 @@
                 android:id="@+id/tv_new_password_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="30dp"
                 android:text="Password Baru"
-                android:textColor="@color/gray_text"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -80,15 +91,14 @@
                     android:textSize="16sp" />
 
                 <ImageButton
-                    android:id="@+id/btn_toggle_new_password"
+                    android:id="@+id/showPasswordBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="16dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="Toggle password visibility"
-                    android:src="@drawable/ic_eye_off"
-                    app:tint="@color/gray_hint" />
+                    android:src="@drawable/ic_eye" />
 
             </FrameLayout>
 
@@ -97,10 +107,9 @@
                 android:id="@+id/tv_confirm_password_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:text="Konfirmasi Password"
-                android:textColor="@color/gray_text"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_new_password_container" />
@@ -132,31 +141,30 @@
                     android:textSize="16sp" />
 
                 <ImageButton
-                    android:id="@+id/btn_toggle_confirm_password"
+                    android:id="@+id/showConfirmPasswordBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="16dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="Toggle password visibility"
-                    android:src="@drawable/ic_eye_off"
-                    app:tint="@color/gray_hint" />
+                    android:src="@drawable/ic_eye"/>
 
             </FrameLayout>
 
             <!-- Reset Password Button -->
             <Button
                 android:id="@+id/btn_reset_password"
-                android:layout_width="0dp"
+                android:layout_width="250dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/bg_edittext"
                 android:text="Reset Password"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:elevation="4dp"
+                android:backgroundTint="#00BCD4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_confirm_password_container" />

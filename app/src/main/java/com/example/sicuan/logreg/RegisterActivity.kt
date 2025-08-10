@@ -2,8 +2,11 @@ package com.example.sicuan.logreg
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,17 +20,54 @@ import kotlinx.coroutines.withContext
 
 class RegisterActivity : AppCompatActivity() {
 
+    private lateinit var etPassword: EditText
+    private lateinit var showPasswordBtn: ImageButton
+    private lateinit var etConfirmPassword: EditText
+    private lateinit var showConfirmPasswordBtn: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         val etUsername = findViewById<EditText>(R.id.inputUsername)
+        etPassword = findViewById<EditText>(R.id.inputPassword)
         val etEmail = findViewById<EditText>(R.id.inputEmail)
-        val etPassword = findViewById<EditText>(R.id.inputPassword)
-        val etConfirmPassword = findViewById<EditText>(R.id.REinputPassword)
+        etConfirmPassword = findViewById<EditText>(R.id.REinputPassword)
         val etNamaUsaha = findViewById<EditText>(R.id.inputNamaUsaha)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
         val loginLink = findViewById<TextView>(R.id.tvMasuk)
+        showPasswordBtn = findViewById(R.id.showPasswordBtn)
+        showConfirmPasswordBtn = findViewById(R.id.showConfirmPasswordBtn)
+
+        // Set up password visibility toggle with hold
+        showPasswordBtn.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    etPassword.transformationMethod = null
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Set up confirm password visibility toggle with hold
+        showConfirmPasswordBtn.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    etConfirmPassword.transformationMethod = null
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    etConfirmPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Event saat tombol daftar ditekan
         btnRegister.setOnClickListener {

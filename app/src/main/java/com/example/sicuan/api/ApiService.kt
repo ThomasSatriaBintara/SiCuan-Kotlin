@@ -18,6 +18,7 @@ import com.example.sicuan.model.response.OTPResponse
 import com.example.sicuan.model.response.PenjualanResponse
 import com.example.sicuan.model.response.ProfileResponse
 import com.example.sicuan.model.response.ResepResponse
+import com.example.sicuan.model.response.StockDetailResponse
 import com.example.sicuan.model.response.StockResponse
 import com.example.sicuan.model.response.TambahResepResponse
 import retrofit2.Call
@@ -125,7 +126,10 @@ interface ApiService {
     suspend fun getStocks(
     ): Response<StockResponse>
 
-    // GET STOCK DETAIL BELUM
+    @GET("stocks/{id}")
+    suspend fun getStockDetail(
+        @Path("id") stockId: String
+    ): Response<StockDetailResponse>
 
     @PATCH("/stocks/{bahan_id}") // DONE FIX
     suspend fun patchStock(

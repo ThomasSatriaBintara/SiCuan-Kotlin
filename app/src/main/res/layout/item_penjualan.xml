@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,51 +11,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:orientation="vertical"
+        android:padding="12dp">
 
+        <!-- Baris atas: Nama Menu + Delete -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tvNamaProduk"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Es Teh"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#262626" />
 
-            <TextView
-                android:id="@+id/tvJumlahLaku"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Laku: 40"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvIncome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Uang Masuk: Rp. 120000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvProfit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Laba: Rp. 60000"
-                android:textSize="14sp" />
+                android:src="@drawable/ic_delete_penjualan"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Hapus"/>
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnDelete"
+        <!-- Baris detail -->
+        <TextView
+            android:id="@+id/tvJumlahLaku"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_delete"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Delete" />
+            android:layout_height="wrap_content"
+            android:text="Laku  : 40"
+            android:textSize="14sp"
+            android:textColor="#4E4E4E"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uang Masuk : Rp. 120000"
+            android:textSize="14sp"
+            android:textColor="#4E4E4E" />
+
+        <TextView
+            android:id="@+id/tvProfit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laba : Rp. 40000"
+            android:textSize="14sp"
+            android:textColor="#4E4E4E" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

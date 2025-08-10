@@ -30,6 +30,7 @@ class TambahPenjualanActivity : AppCompatActivity() {
     private lateinit var etJumlahLaku: EditText
     private lateinit var etKeterangan: EditText
     private lateinit var btnSimpan: Button
+    private lateinit var btnBatal: Button
 
     private var selectedTanggal: String = ""
     private var selectedNamaMenu: String = ""
@@ -43,14 +44,19 @@ class TambahPenjualanActivity : AppCompatActivity() {
 
         spinnerMenu = findViewById(R.id.spinnerMenu)
         tvTanggal = findViewById(R.id.etTanggal)
-        tvHpp = findViewById(R.id.tvHpp)
-        tvHargaJual = findViewById(R.id.tvHargaJual)
+        tvHpp = findViewById(R.id.etHpp)
+        tvHargaJual = findViewById(R.id.etHargaJual)
         etJumlahLaku = findViewById(R.id.etJumlahLaku)
         etKeterangan = findViewById(R.id.etKeterangan)
         btnSimpan = findViewById(R.id.btnSimpan)
+        btnBatal = findViewById(R.id.btnBatal)
 
         tvTanggal.setOnClickListener {
             showDatePicker()
+        }
+
+        btnBatal.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
 
         findViewById<LinearLayout>(R.id.nav_home).setOnClickListener {

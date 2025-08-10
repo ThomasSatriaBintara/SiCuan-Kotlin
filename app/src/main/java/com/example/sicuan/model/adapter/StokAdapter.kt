@@ -12,7 +12,8 @@ import com.example.sicuan.model.response.Stock
 class StokAdapter(
     private var stocks: List<Stock>,
     private val onEditClicked: (Stock) -> Unit,
-    private val onDeleteClicked: (Stock) -> Unit
+    private val onDeleteClicked: (Stock) -> Unit,
+    private val onDetailClicked: (Stock) -> Unit
 ) : RecyclerView.Adapter<StokAdapter.StockViewHolder>() {
 
     inner class StockViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,6 +23,7 @@ class StokAdapter(
         val tvMin: TextView = view.findViewById(R.id.tvMinStok)
         val btnEdit: ImageView = view.findViewById(R.id.btnEdit)
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
+        val btnDetail: ImageView = view.findViewById(R.id.btnDetail)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockViewHolder {
@@ -34,11 +36,12 @@ class StokAdapter(
         val stock = stocks[position]
         holder.tvNo.text = (position + 1).toString()
         holder.tvNama.text = stock.nama_bahan
-        holder.tvJumlah.text = "${stock.jumlah} ${stock.satuan}"
+        holder.tvJumlah.text = holder.itemView.context.getString(R.string.format_jumlah_satuan, stock.jumlah, stock.satuan)
         holder.tvMin.text = stock.minimum_stock.toString()
 
         holder.btnEdit.setOnClickListener { onEditClicked(stock) }
         holder.btnDelete.setOnClickListener { onDeleteClicked(stock) }
+        holder.btnDetail.setOnClickListener { onDetailClicked(stock) }
     }
 
     override fun getItemCount(): Int = stocks.size

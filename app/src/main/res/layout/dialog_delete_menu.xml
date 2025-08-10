@@ -32,7 +32,7 @@
         android:id="@+id/tvMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Data Menu akan hilang dan tidak bisa dikembalikan.\nTetap lanjut?"
+        android:text="Data akan hilang dan tidak bisa dikembalikan.\nTetap lanjut?"
         android:textSize="14sp"
         android:textColor="#666"
         android:gravity="center"
@@ -57,7 +57,8 @@
             android:layout_weight="1"
             android:text="Batal"
             android:textColor="#FFF"
-            android:backgroundTint="#666666" />
+            android:backgroundTint="#666666"
+            android:layout_marginEnd="10dp"/>
 
         <Button
             android:id="@+id/btnDelete"

@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="#E8FBFF">
 
-    <!-- Wave Header -->
+    <!-- Wave header -->
     <ImageView
-        android:id="@+id/imgWave"
+        android:id="@+id/waveBackground"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
@@ -19,27 +19,43 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         app:navigationIcon="@drawable/ic_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp" />
 
-    <!-- Title -->
+    <!-- Judul konten -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profile"
+        android:textSize="30sp"
+        android:textColor="#3E4A89"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="#1C3F68"
-        app:layout_constraintTop_toBottomOf="@+id/imgWave"
+        app:layout_constraintTop_toBottomOf="@id/waveBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
+
+    <!-- Email Label -->
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Nama Pengguna"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <!-- Edit Fields -->
     <EditText
@@ -47,12 +63,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nama Pengguna"
-        android:background="@drawable/bg_edittext"
+        android:background="@drawable/bg_card_jual"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/tvUsername"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Email"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etNama" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -60,24 +91,40 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:enabled="false"
-        android:background="@drawable/bg_input_disabled"
+        android:background="@drawable/bg_edittext"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etNama"
+        app:layout_constraintTop_toBottomOf="@id/tvEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/tvNamaUsaha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Nama Usaha"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
     <EditText
         android:id="@+id/etUsaha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nama Usaha"
-        android:background="@drawable/bg_edittext"
+        android:background="@drawable/bg_card_jual"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etEmail"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/tvNamaUsaha"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:textColor="#000000"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

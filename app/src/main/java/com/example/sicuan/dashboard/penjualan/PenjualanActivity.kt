@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sicuan.R
 import com.example.sicuan.api.ApiClient
@@ -20,7 +20,6 @@ import com.example.sicuan.dashboard.jual.JualActivity
 import com.example.sicuan.dashboard.stok.StokActivity
 import com.example.sicuan.model.adapter.PenjualanAdapter
 import com.example.sicuan.model.response.Penjualan
-import com.example.sicuan.model.response.PenjualanResponse
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -50,7 +49,9 @@ class PenjualanActivity : AppCompatActivity() {
             showDeleteConfirmationDialog(penjualan)
         }
 
-        rvPenjualan.layoutManager = LinearLayoutManager(this)
+        // Ubah dari LinearLayoutManager ke GridLayoutManager dengan 2 kolom
+        val gridLayoutManager = GridLayoutManager(this, 2)
+        rvPenjualan.layoutManager = gridLayoutManager
         rvPenjualan.adapter = penjualanAdapter
 
         val openDateRange = {
@@ -153,7 +154,6 @@ class PenjualanActivity : AppCompatActivity() {
         }
     }
 
-
     private fun loadCustomSales(startDate: String, endDate: String) {
         lifecycleScope.launch {
             try {
@@ -182,14 +182,22 @@ class PenjualanActivity : AppCompatActivity() {
     }
 
     private fun showDeleteConfirmationDialog(penjualan: Penjualan) {
-        AlertDialog.Builder(this)
-            .setTitle("Hapus Penjualan")
-            .setMessage("Yakin ingin menghapus penjualan ${penjualan.nama_menu}?")
-            .setPositiveButton("Hapus") { _, _ ->
-                deletePenjualan(penjualan.id)
-            }
-            .setNegativeButton("Batal", null)
-            .show()
+        val dialog = android.app.AlertDialog.Builder(this).create()
+        val view = layoutInflater.inflate(R.layout.dialog_delete_menu, null)
+
+        val btnCancel = view.findViewById<Button>(R.id.btnCancel)
+        val btnDelete = view.findViewById<Button>(R.id.btnDelete)
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnDelete.setOnClickListener {
+            deletePenjualan(penjualan.id)
+            dialog.dismiss()
+        }
+
+        dialog.setView(view)
+        dialog.setCancelable(false)
+        dialog.show()
     }
 
     private fun deletePenjualan(salesId: String) {

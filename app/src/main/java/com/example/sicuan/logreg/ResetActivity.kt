@@ -2,10 +2,14 @@ package com.example.sicuan.logreg
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.sicuan.R
 import com.example.sicuan.api.ApiClient
@@ -15,7 +19,9 @@ import kotlinx.coroutines.launch
 class ResetActivity : AppCompatActivity() {
 
     private lateinit var etPasswordBaru: EditText
+    private lateinit var showPasswordBtn: ImageButton
     private lateinit var etKonfirmasiPassword: EditText
+    private lateinit var showConfirmPasswordBtn: ImageButton
     private lateinit var btnSimpan: Button
 
     private lateinit var resetToken: String
@@ -24,11 +30,53 @@ class ResetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lupa_reset)
 
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        toolbar.setNavigationOnClickListener {
+            startActivity(Intent(this, OTPActivity::class.java))
+        }
+
         etPasswordBaru = findViewById(R.id.et_new_password)
         etKonfirmasiPassword = findViewById(R.id.et_confirm_password)
         btnSimpan = findViewById(R.id.btn_reset_password)
+        showPasswordBtn = findViewById(R.id.showPasswordBtn)
+        showConfirmPasswordBtn = findViewById(R.id.showConfirmPasswordBtn)
 
         resetToken = intent.getStringExtra("resetToken") ?: ""
+
+        // Set up password visibility toggle with hold and performClick
+        showPasswordBtn.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    etPasswordBaru.transformationMethod = null
+                    v.performClick()
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    etPasswordBaru.transformationMethod = PasswordTransformationMethod.getInstance()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Set up confirm password visibility toggle with hold and performClick
+        showConfirmPasswordBtn.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    etKonfirmasiPassword.transformationMethod = null
+                    v.performClick()
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    etKonfirmasiPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                    true
+                }
+                else -> false
+            }
+        }
 
         btnSimpan.setOnClickListener {
             val newPassword = etPasswordBaru.text.toString()

@@ -7,9 +7,9 @@
     <string name="default_usaha_name">EsTehTik</string>
 
     <string-array name="tambah_resep_spinner">
-        <item>gram (g)</item>
-        <item>mililiter (ml)</item>
-        <item>pieces (pcs)</item>
+        <item>g</item>
+        <item>ml</item>
+        <item>pcs</item>
     </string-array>
 
     <string-array name="stok_spinner">
@@ -17,5 +17,9 @@
         <item>PENYESUAIAN</item>
         <item>PENJUALAN</item>
     </string-array>
+
+    <string name="deskripsi_tentang">Selamat datang di SiCuan, aplikasi sistem informasi manajemen keuangan berbasis cloud yang dirancang khusus untuk membantu pelaku Usaha Mikro, Kecil, dan Menengah (UMKM) di Indonesia dalam mengelola keuangan secara cerdas, efisien, dan real-time. SiCuan hadir sebagai solusi atas tantangan yang selama ini dihadapi oleh banyak UMKM, mulai dari pencatatan keuangan yang masih dilakukan secara manual, kesalahan dalam perhitungan Harga Pokok Produksi (HPP), hingga kesulitan dalam menyusun laporan keuangan yang akurat dan mudah dipahami.\n\nDengan tampilan antarmuka yang modern, ramah pengguna, dan intuitif, SiCuan memudahkan setiap pelaku usaha baik yang terbiasa dengan teknologi maupun yang baru beradaptasi untuk mengatur arus kas, mencatat transaksi harian, menganalisis laporan keuangan, serta menghitung keuntungan usaha secara langsung dari perangkat mereka.\n\nKami percaya bahwa digitalisasi adalah kunci untuk kemajuan UMKM Indonesia. Oleh karena itu, SiCuan didesain untuk tidak hanya mempermudah pekerjaan, tetapi juga meningkatkan pemahaman finansial pelaku UMKM agar mampu bersaing di era ekonomi digital. Dengan SiCuan, kini UMKM bisa lebih percaya diri dalam menyusun strategi bisnis, meraih peluang pendanaan, dan tumbuh secara berkelanjutan.</string>
+
+    <string name="format_jumlah_satuan">%1$d %2$s</string>
 
 </resources>

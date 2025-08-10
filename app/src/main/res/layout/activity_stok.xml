@@ -7,38 +7,42 @@
     android:background="#EAF9FA"
     tools:context=".dashboard.stok.StokActivity">
 
-    <!-- Header Wave -->
+    <!-- Wave header -->
     <ImageView
         android:id="@+id/imgWave"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_wave"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         app:navigationIcon="@drawable/ic_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp" />
 
-    <!-- Judul Stok -->
+    <!-- Judul konten -->
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stok"
-        android:textSize="22sp"
+        android:textSize="30sp"
+        android:textColor="#3E4A89"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toTopOf="@id/imgWave"
-        app:layout_constraintBottom_toBottomOf="@id/imgWave"
+        app:layout_constraintTop_toBottomOf="@id/imgWave"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <!-- Card Total Bahan -->
     <androidx.cardview.widget.CardView
@@ -50,7 +54,7 @@
         android:layout_marginTop="8dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/imgWave"
+        app:layout_constraintTop_toBottomOf="@id/pageTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cardHampirHabis">
 
@@ -130,7 +134,7 @@
         android:id="@+id/etCariBahan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Cari bahan"
+        android:hint=" Cari bahan"
         android:padding="12dp"
         android:background="@drawable/bg_card"
         android:drawableStart="@drawable/ic_search"
@@ -147,8 +151,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/bg_card"
         android:padding="8dp"
         android:orientation="horizontal"
@@ -163,16 +165,17 @@
             android:text="No"
             android:textStyle="bold"
             android:textSize="12sp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Nama Bahan"
-            android:textStyle="bold"
+            android:textColor="#000000"
             android:textSize="12sp"
-            android:textColor="#000000" />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
@@ -199,7 +202,8 @@
             android:text="Aksi"
             android:textStyle="bold"
             android:textSize="12sp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:paddingLeft="15dp"/>
     </LinearLayout>
 
     <!-- RecyclerView -->
@@ -207,8 +211,6 @@
         android:id="@+id/recyclerViewStok"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         app:layout_constraintTop_toBottomOf="@id/headerKolom"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"

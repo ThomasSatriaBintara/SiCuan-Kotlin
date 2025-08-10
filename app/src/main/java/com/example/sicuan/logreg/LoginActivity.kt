@@ -3,9 +3,12 @@ package com.example.sicuan.logreg
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,15 +22,40 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var etPassword: EditText
+    private lateinit var showPasswordBtn: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         val emailField = findViewById<EditText>(R.id.etEmail)
-        val passwordField = findViewById<EditText>(R.id.etPassword)
+        etPassword = findViewById<EditText>(R.id.etPassword) // ✅ PERBAIKAN: Inisialisasi etPassword
         val loginButton = findViewById<Button>(R.id.btnLogin)
         val daftarLink = findViewById<TextView>(R.id.tvDaftar)
         val lupaPassword = findViewById<TextView>(R.id.tvLupaPassword)
+
+        showPasswordBtn = findViewById(R.id.showPasswordBtn)
+
+        // Set up password visibility toggle with hold
+        showPasswordBtn.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // Tampilkan password
+                    etPassword.transformationMethod = null
+                    etPassword.setSelection(etPassword.text.length) // Pindahkan cursor ke akhir
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    // Sembunyikan password
+                    etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                    etPassword.setSelection(etPassword.text.length) // Pindahkan cursor ke akhir
+                    true
+                }
+                else -> false
+            }
+        }
 
         daftarLink.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -39,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             val email = emailField.text.toString().trim()
-            val password = passwordField.text.toString().trim()
+            val password = etPassword.text.toString().trim() // ✅ PERBAIKAN: Gunakan etPassword
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 loginUser(email, password)
